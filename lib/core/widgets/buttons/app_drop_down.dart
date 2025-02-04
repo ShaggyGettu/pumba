@@ -28,6 +28,8 @@ class _AppDropDownState<T> extends ConsumerState<AppDropDown<T>> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<T>(
+      borderRadius: BorderRadius.circular(16),
+      dropdownColor: Theme.of(context).scaffoldBackgroundColor,
       items: _items.map((item) {
         return DropdownMenuItem(
           value: item,

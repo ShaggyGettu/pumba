@@ -16,14 +16,24 @@ class AppStrings {
   static const String passwordPlaceholder = 'Enter your password';
   static const String signUp = 'Sign Up';
   static const String ok = 'OK';
+  static const String cancel = 'Cancel';
+  static const String deleteUser = 'Delete User';
+  static const String deleteUserMessage =
+      'Are you sure you want to delete your account?';
 
   // Home page
   static String greetUser(String firstName, String lastName) =>
       'Hello $firstName $lastName, How are you today?';
   static const String allowLocation = 'Allow Location';
   static const String start = 'Start';
-  static String notificationWillAppear(int hour, int minute) =>
-      'The notification will appear at $hour:$minute';
+  static String notificationWillAppear(String hhmm) =>
+      'The notification will appear at $hhmm';
+  static const String notificationTitle = 'Notification Title';
+  static const String notificationBody = 'Notification Body';
+  static const String notificationPermissionTitle = 'Notification Permission';
+  static const String notificationPermissionMessage =
+      'Please enable notification permission to receive alerts.';
+  static const String notificationPermissionConfirm = 'Settings';
 
   // Error messages
   static const String wrongEmailFormat = 'Please enter a valid email address';

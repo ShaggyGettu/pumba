@@ -28,7 +28,7 @@ class FirebaseUserRepository implements UserRepository {
       );
     } catch (e) {
       _logger.e('Error creating user: $e');
-      throw Exception('Error creating user');
+      rethrow;
     }
   }
 
@@ -103,7 +103,7 @@ class FirebaseUserRepository implements UserRepository {
       }
     } catch (e) {
       _logger.e('Error saving user data: $e');
-      throw Exception('Error saving user data');
+      rethrow;
     }
   }
 

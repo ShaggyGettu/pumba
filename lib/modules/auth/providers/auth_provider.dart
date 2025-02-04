@@ -19,7 +19,6 @@ class AuthNotifier extends ChangeNotifier {
   final _logger = FimberLog('AuthProvider');
   final Ref _ref;
   final UserRepository _firebaseUserRepository = FirebaseUserRepository();
-  bool? _isAuthenticated;
   StreamSubscription<AppUser?>? _authChangeSubscription;
   Timer? _terminateTimer;
   String? _errorMessage;
@@ -28,7 +27,6 @@ class AuthNotifier extends ChangeNotifier {
     _listenToAuthState();
   }
 
-  bool? get isAuthenticated => _isAuthenticated;
   UserNotifier get _userNotifier => _ref.read(userProvider.notifier);
   Duration get _terminationUpdateDuration => const Duration(seconds: 10);
   String? get errorMessage => _errorMessage;
@@ -38,16 +36,13 @@ class AuthNotifier extends ChangeNotifier {
         _firebaseUserRepository.listenToUser().listen((user) async {
       _logger.i('authStateChanges: $user');
       if (user == null) {
+        AppRouter.goNamed(AppRoute.authPage);
         _terminateTimer?.cancel();
         _logger.i('not authenticated');
-        _isAuthenticated = false;
-        AppRouter.goNamed(AppRoute.authPage);
       } else {
         _logger.i('authenticated');
-        _isAuthenticated = true;
         _userNotifier.initStream();
         await _ref.read(permissionProvider).requestLocationPermission();
-        await Future.delayed(const Duration(seconds: 1));
         AppRouter.goNamed(AppRoute.home);
         _terminateTimer = Timer.periodic(_terminationUpdateDuration, (timer) {
           _logger.i('terminateSubscription');
@@ -116,6 +111,7 @@ class AuthNotifier extends ChangeNotifier {
   Future<void> deleteUser() async {
     try {
       _logger.i('deleteUser');
+      AppRouter.goNamed(AppRoute.authPage);
       _firebaseUserRepository.removeUserData();
       _firebaseUserRepository.deleteUser();
     } catch (e) {

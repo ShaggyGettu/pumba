@@ -64,11 +64,23 @@ class _AppElevatedButtonState extends ConsumerState<AppElevatedButton> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              text,
-              style: textStyle ?? Theme.of(context).textTheme.bodyMedium,
+            Padding(
+              padding: const EdgeInsets.only(left: 40.0),
+              child: Text(
+                text,
+                style: textStyle ?? Theme.of(context).textTheme.bodyMedium,
+              ),
             ),
-            if (_isPressed) const CircularProgressIndicator.adaptive(),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Visibility(
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                visible: _isPressed,
+                child: const CircularProgressIndicator.adaptive(),
+              ),
+            ),
           ],
         ),
       ),

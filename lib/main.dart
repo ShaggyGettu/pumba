@@ -5,10 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pumba/core/app_colors.dart';
 import 'package:pumba/core/router/app_routes.dart';
 import 'package:pumba/firebase_options.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 Future<void> main() async {
   Fimber.plantTree(DebugTree());
   WidgetsFlutterBinding.ensureInitialized();
+  tz.initializeTimeZones();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
