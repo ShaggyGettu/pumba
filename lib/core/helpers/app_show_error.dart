@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pumba/core/app_strings.dart';
 import 'package:pumba/core/models/check_platform.dart';
@@ -7,12 +8,30 @@ abstract class AppShowError {
     required BuildContext context,
     required String message,
   }) async {
-    if (CheckPlatform.isMobile) {
+    if (CheckPlatform.isAndroid) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(message),
         ),
+      );
+    } else if (CheckPlatform.isIOS) {
+      await showDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: Text(AppStrings.error),
+            content: Text(message),
+            actions: [
+              CupertinoDialogAction(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(AppStrings.ok),
+              ),
+            ],
+          );
+        },
       );
     } else {
       await showDialog(

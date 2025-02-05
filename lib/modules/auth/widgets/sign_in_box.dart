@@ -20,17 +20,17 @@ class SignInBox extends ConsumerStatefulWidget {
 class _SignInBoxState extends ConsumerState<SignInBox> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController(
-        text: 'abc@gmail.com',
-      ),
+          // text: 'abc@gmail.com',
+          ),
       _passwordController = TextEditingController(
-        text: '123456Abr',
-      ),
+          // text: '123456Abr',
+          ),
       _firstNameController = TextEditingController(
-        text: 'John',
-      ),
+          // text: 'John',
+          ),
       _lastNameController = TextEditingController(
-        text: 'Doe',
-      );
+          // text: 'Doe',
+          );
   final _emailFocusNode = FocusNode(),
       _passwordFocusNode = FocusNode(),
       _firstNameFocusNode = FocusNode(),

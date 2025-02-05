@@ -15,6 +15,7 @@ class AppStrings {
   static const String passwordLabel = 'Password';
   static const String passwordPlaceholder = 'Enter your password';
   static const String signUp = 'Sign Up';
+  static const String error = 'Error';
   static const String ok = 'OK';
   static const String cancel = 'Cancel';
   static const String deleteUser = 'Delete User';

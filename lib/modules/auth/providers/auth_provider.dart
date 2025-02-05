@@ -112,8 +112,8 @@ class AuthNotifier extends ChangeNotifier {
     try {
       _logger.i('deleteUser');
       AppRouter.goNamed(AppRoute.authPage);
-      _firebaseUserRepository.removeUserData();
-      _firebaseUserRepository.deleteUser();
+      await _firebaseUserRepository.removeUserData();
+      await _firebaseUserRepository.deleteUser();
     } catch (e) {
       _logger.e('deleteUser: $e');
       _errorMessage = AppStrings.failedToDeleteUser;
